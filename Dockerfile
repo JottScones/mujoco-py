@@ -2,12 +2,13 @@
 # on hosts with GPUs.
 # The image below is a pinned version of nvidia/cuda:9.1-cudnn7-devel-ubuntu16.04 (from Jan 2018)
 # If updating the base image, be sure to test on GPU since it has broken in the past.
-FROM nvidia/cuda@sha256:4df157f2afde1cb6077a191104ab134ed4b2fd62927f27b69d788e8e79a45fa1
+FROM nvidia/cudagl:11.3.0-devel-ubuntu18.04
 
 RUN apt-get update -q \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     git \
+    patchelf \
     libgl1-mesa-dev \
     libgl1-mesa-glx \
     libglew-dev \
@@ -60,6 +61,6 @@ RUN pip install --no-cache-dir -r requirements.dev.txt
 
 # Delay moving in the entire code until the very end.
 ENTRYPOINT ["/mujoco_py/vendor/Xdummy-entrypoint"]
-CMD ["pytest"]
+CMD ["python"]
 COPY . /mujoco_py
 RUN python setup.py install

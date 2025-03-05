@@ -1,3 +1,11 @@
+```
+docker build . -t mujoco
+docker create --name mujoco-container mujoco
+docker start -it --name mujoco-container bash
+```
+
+---
+
 **Status**: Deprecated
 
 ### `mujoco-py` does not support versions of MuJoCo after 2.1.0.
@@ -10,7 +18,6 @@
 `mujoco-py` allows using MuJoCo from Python 3.
 
 This library has been updated to be compatible with MuJoCo version 2.1 released on 2021-10-18.
-
 
 ## Synopsis
 
@@ -37,11 +44,15 @@ If you want to specify a nonstandard location for the package,
 use the env variable `MUJOCO_PY_MUJOCO_PATH`.
 
 ### Install and use `mujoco-py`
+
 To include `mujoco-py` in your own package, add it to your requirements like so:
+
 ```
 mujoco-py<2.2,>=2.1
 ```
+
 To play with `mujoco-py` interactively, follow these steps:
+
 ```
 $ pip3 install -U 'mujoco-py<2.2,>=2.1'
 $ python3
@@ -115,7 +126,6 @@ Add the path to the mujoco bin directory to your dynamic loader:
 
 This is particularly useful on Ubuntu 14.04, which does not have a GLFW package.
 
-
 ### Ubuntu installtion troubleshooting
 
 Because `mujoco_py` has compiled native code that needs to be linked to a supplied MuJoCo binary, it's installation
@@ -130,16 +140,16 @@ to create the symbolic link directly:
 
     sudo ln -s /usr/lib/x86_64-linux-gnu/libGL.so.1 /usr/lib/x86_64-linux-gnu/libGL.so
 
-
 ## Usage Examples
 
 A number of examples demonstrating some advanced features of `mujoco-py` can be found in [`examples/`](/./examples/). These include:
+
 - [`body_interaction.py`](./examples/body_interaction.py): shows interactions between colliding bodies
 - [`disco_fetch.py`](./examples/disco_fetch.py): shows how `TextureModder` can be used to randomize object textures
 - [`internal_functions.py`](./examples/internal_functions.py): shows how to call raw mujoco functions like `mjv_room2model`
 - [`markers_demo.py`](./examples/markers_demo.py): shows how to add visualization-only geoms to the viewer
 - [`serialize_model.py`](./examples/serialize_model.py): shows how to save and restore a model
-- [`setting_state.py`](./examples/setting_state.py):  shows how to reset the simulation to a given state
+- [`setting_state.py`](./examples/setting_state.py): shows how to reset the simulation to a given state
 - [`tosser.py`](./examples/tosser.py): shows a simple actuated object sorting robot application
 
 See the [full documentation](https://openai.github.io/mujoco-py/build/html/index.html) for advanced usage.
